@@ -1,6 +1,99 @@
 # Release Notes for 5.8.x
 
-## [Unreleased](https://github.com/laravel/framework/compare/v5.8.8...5.8)
+## [Unreleased](https://github.com/laravel/framework/compare/v5.8.13...5.8)
+
+### Changed
+- Update auth stubs with `@error` blade directive ([#28273](https://github.com/laravel/framework/pull/28273))
+
+### TODO:
+- Job Based Retry Delay ([#28265](https://github.com/laravel/framework/pull/28265))
+- Use Null Coalesce Operator ([#28280](https://github.com/laravel/framework/pull/28280))
+
+## [v5.8.13 (2019-04-18)](https://github.com/laravel/framework/compare/v5.8.12...v5.8.13)
+
+### Added
+- Added `@error` blade directive ([#28062](https://github.com/laravel/framework/pull/28062))
+- Added the ability to register `custom Doctrine DBAL` types in the schema builder ([#28214](https://github.com/laravel/framework/pull/28214), [91a6afe](https://github.com/laravel/framework/commit/91a6afe1f9f8d18283f3ee9a72b636a121f06da5))
+
+### Fixed
+- Fixed: [Event::fake() does not replace dispatcher for guard](https://github.com/laravel/framework/issues/27451) ([#28238](https://github.com/laravel/framework/pull/28238), [be89773](https://github.com/laravel/framework/commit/be89773c52e7491de05dee053b18a38b177d6030))
+
+### Reverted
+- Reverted of [`possibility for use in / not in operators in the query builder`](https://github.com/laravel/framework/pull/28192) since of [issue with `wherePivot()` method](https://github.com/laravel/framework/issues/28251) ([04a547ee](https://github.com/laravel/framework/commit/04a547ee25f78ddd738610cdbda2cb393c6795e9))
+
+
+## [v5.8.12 (2019-04-16)](https://github.com/laravel/framework/compare/v5.8.11...v5.8.12)
+
+### Added
+- Added `Illuminate\Support\Collection::duplicates()` ([#28181](https://github.com/laravel/framework/pull/28181))
+- Added `Illuminate\Database\Eloquent\Collection::duplicates()` ([#28194](https://github.com/laravel/framework/pull/28194))
+- Added `Illuminate\View\FileViewFinder::getViews()` ([#28198](https://github.com/laravel/framework/pull/28198))
+- Added helper methods `onSuccess()` \ `onFailure()` \ `pingOnSuccess()` \ `pingOnFailure()` \ `emailOnFailure()` to `Illuminate\Console\Scheduling\Event` ([#28167](https://github.com/laravel/framework/pull/28167))
+- Added `SET` datatype on MySQL Grammar ([#28171](https://github.com/laravel/framework/pull/28171))
+- Added possibility for use `in` / `not in` operators in the query builder ([#28192](https://github.com/laravel/framework/pull/28192))
+
+### Fixed
+- Fixed memory leak in JOIN queries ([#28220](https://github.com/laravel/framework/pull/28220))
+- Fixed circular dependency in `Support\Testing\Fakes\QueueFake` for undefined methods ([#28164](https://github.com/laravel/framework/pull/28164))
+- Fixed exception in `lt` \ `lte` \ `gt` \ `gte` validations with different types ([#28174](https://github.com/laravel/framework/pull/28174))
+- Fixed `string quoting` for `SQL Server` ([#28176](https://github.com/laravel/framework/pull/28176))
+- Fixed `whereDay` and `whereMonth` when passing `int` values ([#28185](https://github.com/laravel/framework/pull/28185))
+
+### Changed
+- Added `autocomplete` attributes to the html stubs ([#28226](https://github.com/laravel/framework/pull/28226)) 
+- Improved `event:list` command ([#28177](https://github.com/laravel/framework/pull/28177), [cde1c5d](https://github.com/laravel/framework/commit/cde1c5d8b38a9b040e70c344bba82781239a0bbf))
+- Updated `Illuminate\Database\Console\Factories\FactoryMakeCommand` to generate more IDE friendly code ([#28188](https://github.com/laravel/framework/pull/28188))
+- Added missing `LockProvider` interface on `DynamoDbStore` ([#28203](https://github.com/laravel/framework/pull/28203))
+- Change session's user_id to unsigned big integer in the stub ([#28206](https://github.com/laravel/framework/pull/28206))
+
+
+## [v5.8.11 (2019-04-10)](https://github.com/laravel/framework/compare/v5.8.10...v5.8.11)
+
+### Added
+- Allowed to call `macros` directly on `Illuminate\Support\Facades\Date` ([#28129](https://github.com/laravel/framework/pull/28129))
+- Allowed `lock` to be configured in `local filesystems` ([#28124](https://github.com/laravel/framework/pull/28124))
+- Added tracking of the exit code in scheduled event commands ([#28140](https://github.com/laravel/framework/pull/28140))
+
+### Fixed
+- Fixed of escaping single quotes in json paths in `Illuminate\Database\Query\Grammars\Grammar` ([#28160](https://github.com/laravel/framework/pull/28160))
+- Fixed event discovery with different Application Namespace ([#28145](https://github.com/laravel/framework/pull/28145))
+
+### Changed
+- Added view path to end of compiled blade view (in case if path is not empty) ([#28117](https://github.com/laravel/framework/pull/28117), [#28141](https://github.com/laravel/framework/pull/28141))
+- Added `realpath` to `app_path` during string replacement in `Illuminate\Foundation\Console\Kernel::load()` ([82ded9a](https://github.com/laravel/framework/commit/82ded9a28621b552589aba66e4e05f9a46f46db6))
+
+### Refactoring
+- Refactoring of `Illuminate\Foundation\Events\DiscoverEvents::within()` ([#28122](https://github.com/laravel/framework/pull/28122), [006f999](https://github.com/laravel/framework/commit/006f999d8c629bf87ea0252447866a879d7d4a6e))
+
+
+## [v5.8.10 (2019-04-04)](https://github.com/laravel/framework/compare/v5.8.9...v5.8.10)
+
+### Added
+- Added `replicating` model event ([#28077](https://github.com/laravel/framework/pull/28077))
+- Make `NotificationFake` macroable ([#28091](https://github.com/laravel/framework/pull/28091))
+
+### Fixed
+- Exclude non-existing directories from event discovery ([#28098](https://github.com/laravel/framework/pull/28098))
+
+### Changed
+- Sorting of events in `event:list` command ([3437751](https://github.com/laravel/framework/commit/343775115722ed0e6c3455b72ee7204aefdf37d3))
+- Removed path hint in compiled view ([33ce7bb](https://github.com/laravel/framework/commit/33ce7bbb6a7f536036b58b66cc760fbb9eda80de))
+
+
+## [v5.8.9 (2019-04-02)](https://github.com/laravel/framework/compare/v5.8.8...v5.8.9)
+
+### Added
+- Added Event Discovery ([#28064](https://github.com/laravel/framework/pull/28064), [#28085](https://github.com/laravel/framework/pull/28085))
+
+### Fixed
+- Fixed serializing a collection from a `Resource` with `preserveKeys` property ([#27985](https://github.com/laravel/framework/pull/27985))
+- Fixed: `SoftDelete::runSoftDelete` and `SoftDelete::performDeleteOnModel` with overwritten `Model::setKeysForSaveQuery` ([#28081](https://github.com/laravel/framework/pull/28081))
+
+### Changed
+- Update forever cache duration for database driver from minutes to seconds ([#28048](https://github.com/laravel/framework/pull/28048))
+
+### Refactoring:
+- Refactoring of `Illuminate\Auth\Access\Gate::callBeforeCallbacks()` ([#28079](https://github.com/laravel/framework/pull/28079))
 
 
 ## [v5.8.8 (2019-03-26)](https://github.com/laravel/framework/compare/v5.8.7...v5.8.8)
