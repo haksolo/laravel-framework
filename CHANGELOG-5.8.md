@@ -1,13 +1,91 @@
 # Release Notes for 5.8.x
 
-## [Unreleased](https://github.com/laravel/framework/compare/v5.8.13...5.8)
+## [Unreleased](https://github.com/laravel/framework/compare/v5.8.17...5.8)
+
+
+## [v5.8.17 (2019-05-14)](https://github.com/laravel/framework/compare/v5.8.16...v5.8.17)
+
+### Added
+- Added `Illuminate\Foundation\Testing\TestResponse::dumpHeaders()` ([#28450](https://github.com/laravel/framework/pull/28450))
+- Added `ends_with` validation rule ([#28455](https://github.com/laravel/framework/pull/28455))
+- Added possibility to use a few `columns` arguments in the `route:list` command ([#28459](https://github.com/laravel/framework/pull/28459))
+- Added `retryAfter` in `Mail\SendQueuedMailable` and `Notifications\SendQueuedNotifications` object ([#28484](https://github.com/laravel/framework/pull/28484))
+- Added `Illuminate\Foundation\Console\Kernel::scheduleCache()` ([6587e78](https://github.com/laravel/framework/commit/6587e78383c4ecc8d7f3791f54cf6f536a1fc089))
+- Added support for multiple `--path` options within migrate commands ([#28495](https://github.com/laravel/framework/pull/28495))
+- Added `Tappable` trait ([#28507](https://github.com/laravel/framework/pull/28507))
+- Added support auto-discovery for events in a custom application directory, that sets via `Illuminate\Foundation\Application::useAppPath()` ([#28493](https://github.com/laravel/framework/pull/28493))
+- Added passing of notifiable email through reset link ([#28475](https://github.com/laravel/framework/pull/28475))
+- Added support flush db on clusters in `PhpRedisConnection` and `PredisConnection` ([f4e8d5c](https://github.com/laravel/framework/commit/f4e8d5c1f1b72e24baac33c336233cca24230783))
+
+### Fixed
+- Fixed session resolver  in `RoutingServiceProvider` (without bind of `session` in `Container`) ([#28438](https://github.com/laravel/framework/pull/28438))
+- Fixed `route:list` command when routes were dynamically modified ([#28460](https://github.com/laravel/framework/pull/28460), [#28463](https://github.com/laravel/framework/pull/28463))
+- Fixed `required` validation with multiple `passes()` calls ([#28502](https://github.com/laravel/framework/pull/28502))
+- Fixed the collation bug when changing columns in a migration ([#28514](https://github.com/laravel/framework/pull/28514))
+- Added password to the `RedisCluster` only if `redis` >= `4.3.0` ([1371940](https://github.com/laravel/framework/commit/1371940abe17b7b6008e136060fcf5534f15f03f))
+- Used `escapeshellarg` on windows symlink in `Filesystem::link()`([44c3feb](https://github.com/laravel/framework/commit/44c3feb604944599ad1c782a9942981c3991fa31))
+
+### Changed
+- Reset webpack file for none preset ([#28462](https://github.com/laravel/framework/pull/28462))
+
+
+## [v5.8.16 (2019-05-07)](https://github.com/laravel/framework/compare/v5.8.15...v5.8.16)
+
+### Added
+- Added: Migration Events ([#28342](https://github.com/laravel/framework/pull/28342))
+- Added ability to drop types when running the `migrate:fresh` command ([#28382](https://github.com/laravel/framework/pull/28382))
+- Added `Renderable` functionality to `MailMessage` ([#28386](https://github.com/laravel/framework/pull/28386))
+
+### Fixed
+- Fixed the remaining issues with registering custom Doctrine types ([#28375](https://github.com/laravel/framework/pull/28375))
+- Fixed `fromSub()` and `joinSub()` with table prefix in `Query\Builder` ([#28400](https://github.com/laravel/framework/pull/28400))
+- Fixed false positives for `Schema::hasTable()` with views ([#28401](https://github.com/laravel/framework/pull/28401))
+- Fixed `sync` results with custom `Pivot` model ([#28416](https://github.com/laravel/framework/pull/28416), [e31d131](https://github.com/laravel/framework/commit/e31d13111da02fed6bd2ce7a6393431a4b34f924))
+
+### Changed
+- Modified `None` And `React` presets with `vue-template-compiler` ([#28389](https://github.com/laravel/framework/pull/28389))
+- Changed `navbar-laravel` class to `bg-white shadow-sm` class in `layouts\app.stub` ([#28417](https://github.com/laravel/framework/pull/28417))
+- Don't execute query in `Builder::findMany()` when ids are empty `Arrayable` ([#28432](https://github.com/laravel/framework/pull/28432))
+- Added parameter `password` for `RedisCluster` construct function ([#28434](https://github.com/laravel/framework/pull/28434))
+- Pass email verification URL to callback in `Auth\Notifications\VerifyEmail` ([#28428](https://github.com/laravel/framework/pull/28428))
+- Updated `RouteAction::parse()` ([#28397](https://github.com/laravel/framework/pull/28397))
+- Updated `Events\DiscoverEvents` ([#28421](https://github.com/laravel/framework/pull/28421), [#28426](https://github.com/laravel/framework/pull/28426))
+
+
+## [v5.8.15 (2019-04-27)](https://github.com/laravel/framework/compare/v5.8.14...v5.8.15)
+
+### Added
+- Added handling of database URL as database connections ([#28308](https://github.com/laravel/framework/pull/28308), [4560d28](https://github.com/laravel/framework/commit/4560d28a8a5829253b3dea360c4fffb208962f83), [05b029e](https://github.com/laravel/framework/commit/05b029e58d545ee3489d45de01b8306ac0e6cf9e))
+- Added the `dd()` / `dump` methods to the `Illuminate\Database\Query\Builder.php` ([#28357](https://github.com/laravel/framework/pull/28357))
+
+### Fixed
+- Fixed `BelongsToMany` parent key ([#28317](https://github.com/laravel/framework/pull/28317))
+- Fixed `make:auth` command with apps configured views path ([#28324](https://github.com/laravel/framework/pull/28324), [e78cf02](https://github.com/laravel/framework/commit/e78cf0244d530b81e44c0249ded14512aaeb0ef9))
+- Fixed recursive replacements in `Str::replaceArray()` ([#28338](https://github.com/laravel/framework/pull/28338))
+
+### Improved
+- Added custom message to `TokenMismatchException` exception within `VerifyCsrfToken` class ([#28335](https://github.com/laravel/framework/pull/28335))
+- Improved output of `Foundation\Testing\TestResponse::assertSessionDoesntHaveErrors` when called with no arguments ([#28359](https://github.com/laravel/framework/pull/28359))
+
+### Changed
+- Allowed logging out other devices without setting remember me cookie ([#28366](https://github.com/laravel/framework/pull/28366))
+
+
+## [v5.8.14 (2019-04-23)](https://github.com/laravel/framework/compare/v5.8.13...v5.8.14)
+
+### Added
+- Implemented `Job Based Retry Delay` ([#28265](https://github.com/laravel/framework/pull/28265))
 
 ### Changed
 - Update auth stubs with `@error` blade directive ([#28273](https://github.com/laravel/framework/pull/28273))
+- Convert email data tables to layout tables ([#28286](https://github.com/laravel/framework/pull/28286))
 
-### TODO:
-- Job Based Retry Delay ([#28265](https://github.com/laravel/framework/pull/28265))
-- Use Null Coalesce Operator ([#28280](https://github.com/laravel/framework/pull/28280))
+### Reverted
+- Partial reverted [ability of register custom Doctrine DBAL](https://github.com/laravel/framework/pull/28214), since of [#28282](https://github.com/laravel/framework/issues/28282) issue ([#28301](https://github.com/laravel/framework/pull/28301))
+
+### Refactoring
+- Replace code with `Null Coalescing Operator` ([#28280](https://github.com/laravel/framework/pull/28280), [#28287](https://github.com/laravel/framework/pull/28287))
+
 
 ## [v5.8.13 (2019-04-18)](https://github.com/laravel/framework/compare/v5.8.12...v5.8.13)
 
